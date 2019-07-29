@@ -3,8 +3,8 @@ FROM ubuntu:16.04
 # Install build tools
 RUN apt update && apt install -y --no-install-recommends \
     gcc g++ libboost-dev libboost-program-options-dev libboost-system-dev libboost-thread-dev \
-    libboost-math-dev libboost-test-dev libboost-python-dev zlib1g-dev cmake make software-properties-common \
-    python-setuptools python-dev build-essential maven wget git netcat default-jdk \
+    libboost-math-dev libboost-test-dev zlib1g-dev cmake make software-properties-common \
+    python-setuptools python-dev build-essential maven wget git netcat-openbsd default-jdk \
   && rm -rf /var/lib/apt/lists/*
 
 # Install python tools
@@ -17,7 +17,8 @@ RUN wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -
   hash -r && \
   /opt/miniconda/bin/conda config --set always_yes yes --set changeps1 no && \
   /opt/miniconda/bin/conda update -q conda && \
-  /opt/miniconda/bin/conda create -q -n test-python27 python=2.7 nomkl numpy scipy scikit-learn pytest readme_renderer pandas six virtualenv wheel && \
+  /opt/miniconda/bin/conda create -q -n test-python27 python=2.7 cmake nomkl numpy boost py-boost scipy scikit-learn pytest readme_renderer pandas six virtualenv wheel && \
+  /opt/miniconda/bin/conda create -q -n test-python36 python=3.6 cmake nomkl numpy boost py-boost scipy scikit-learn pytest readme_renderer pandas six virtualenv wheel && \
   /opt/miniconda/bin/conda clean -a
 
 # Download Maven dependencies
