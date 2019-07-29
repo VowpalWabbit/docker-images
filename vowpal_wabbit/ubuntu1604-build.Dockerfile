@@ -13,13 +13,13 @@ RUN easy_install pip && \
 
 # Install Miniconda and setup environment
 RUN wget https://repo.continuum.io/miniconda/Miniconda2-latest-Linux-x86_64.sh -O miniconda.sh && \
-  bash miniconda.sh -b -p ~/miniconda && \
+  bash miniconda.sh -b -p /usr/local/miniconda && \
   hash -r && \
-  ~/miniconda/bin/conda config --set always_yes yes --set changeps1 no && \
-  ~/miniconda/bin/conda update -q conda && \
-  ~/miniconda/bin/conda create -q -n test-python27 python=2.7 cmake nomkl numpy boost py-boost scipy scikit-learn pytest readme_renderer pandas six virtualenv wheel && \
-  ~/miniconda/bin/conda create -q -n test-python36 python=3.6 cmake nomkl numpy boost py-boost scipy scikit-learn pytest readme_renderer pandas six virtualenv wheel && \
-  ~/miniconda/bin/conda clean -a
+  /usr/local/miniconda/bin/conda config --set always_yes yes --set changeps1 no && \
+  /usr/local/miniconda/bin/conda update -q conda && \
+  /usr/local/miniconda/bin/conda create -q -n test-python27 python=2.7 cmake nomkl numpy boost py-boost scipy scikit-learn pytest readme_renderer pandas six virtualenv wheel && \
+  /usr/local/miniconda/bin/conda create -q -n test-python36 python=3.6 cmake nomkl numpy boost py-boost scipy scikit-learn pytest readme_renderer pandas six virtualenv wheel && \
+  /usr/local/miniconda/bin/conda clean -a
 
 # Download Maven dependencies
 RUN wget https://raw.githubusercontent.com/VowpalWabbit/vowpal_wabbit/master/java/pom.xml.in && \
