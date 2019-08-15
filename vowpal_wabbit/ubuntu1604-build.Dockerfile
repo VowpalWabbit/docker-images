@@ -76,5 +76,6 @@ RUN wget http://releases.llvm.org/7.0.1/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu
 
 # Non-layer configuration
 # Set environment variables used by build
+ENV PATH="/usr/local/miniconda/bin:${PATH}"
 ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/lib"
 ENV JAVA_HOME="/usr/lib/jvm/java-8-openjdk-amd64/"
