@@ -1,4 +1,4 @@
-FROM vowpal_wabbit/ubuntu1604-build
+FROM vowpalwabbit/ubuntu1604-build
 
 # Assumes baseline tools, vw dependencies, GCC 4.9, and CMake 3.13
 
