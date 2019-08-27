@@ -10,7 +10,7 @@ FROM centos:centos7.6.1810
 RUN yum -y updateinfo \
    && yum install -y \
    # C++ to bootstrap
-   gcc-c++ gcc git make wget help2man \
+   gcc-c++ gcc git make wget \
    # Java
    maven \
    # Dependencies
