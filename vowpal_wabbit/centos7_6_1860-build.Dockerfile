@@ -36,9 +36,9 @@ RUN wget ftp://ftp.mirrorservice.org/sites/sourceware.org/pub/gcc/releases/gcc-9
    && cd gcc-9.2.0 \
    && ./contrib/download_prerequisites \
    && ./configure --disable-multilib --enable-languages=c,c++ --with-pic \
-   && make -j 2 \
+   && make -j$(nproc) \
    && make install \
-   && cd .. && rm -rf gcc-9.2.0.tar.gz gcc-9.2.0 \ 
+   && cd .. && rm -rf gcc-9.2.0.tar.gz gcc-9.2.0 \
    && chmod +x /usr/local/libexec/gcc/x86_64-pc-linux-gnu/9.2.0/cc1plus
 
 # Update path so it uses gcc 9.2
@@ -48,8 +48,8 @@ ENV PATH="/usr/local/bin:${PATH}"
 RUN wget -O zlib.tar.gz 'https://zlib.net/fossils/zlib-1.2.8.tar.gz' \
    && tar xvzf zlib.tar.gz \
    && cd zlib-1.2.8 \
-   && ./configure --static --archs=-fPIC \ 
-   && make \ 
+   && ./configure --static --archs=-fPIC \
+   && make -j$(nproc) \
    && make install \
    && cd .. && rm -rf zlib*
 
@@ -59,7 +59,7 @@ RUN wget -O boost.tar.gz 'https://sourceforge.net/projects/boost/files/boost/1.7
    && mkdir boost_output \
    && cd boost_1_70_0 \
    && ./bootstrap.sh --prefix=/boost_output --with-libraries=program_options,system,thread,test,chrono,date_time,atomic \
-   && ./bjam -j2 cxxflags=-fPIC cflags=-fPIC -a install \
+   && ./bjam -j$(nproc) cxxflags=-fPIC cflags=-fPIC -a install \
    && /usr/bin/cp -f /boost_output/lib/libboost_system.a /boost_output/lib/libboost_program_options.a /usr/lib64 \
    && cd .. && rm -rf boost_1_70_0 boost.tar.gz
 
