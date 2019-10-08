@@ -54,7 +54,7 @@ RUN version=3.13 && build=5 \
  && wget https://cmake.org/files/v$version/cmake-$version.$build-Linux-x86_64.sh \
  && mkdir /opt/cmake \
  && sh cmake-$version.$build-Linux-x86_64.sh --prefix=/opt/cmake --skip-license \
- && ln -s /opt/cmake/bin/cmake /usr/local/bin/cmake \
+ && for filename in /opt/cmake/bin/*; do echo Registering $filename; ln -fs $filename /usr/local/bin/`basename $filename`; done \
  && rm cmake-$version.$build-Linux-x86_64.sh
 
 # Install Python tools, Miniconda, and setup environment
