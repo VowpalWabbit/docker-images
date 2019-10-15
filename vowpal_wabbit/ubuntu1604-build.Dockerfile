@@ -14,7 +14,7 @@ RUN apt-get update && \
     # 16.04-specifics
     # netcat-openbsd - work around an issue where the default netcat does not work for
     #                  daemon-mode tests
-    netcat-openbsd \ 
+    netcat-openbsd \
     # Dependencies
     libboost-dev \
     libboost-math-dev \
@@ -50,8 +50,8 @@ RUN easy_install pip \
  && /usr/local/miniconda/bin/conda config --set always_yes yes --set changeps1 no \
  && /usr/local/miniconda/bin/conda update -q conda \
  #&& /usr/local/miniconda/bin/conda install -q conda-env \
- && /usr/local/miniconda/bin/conda create -q -n test-python27 python=2.7 wheel virtualenv pytest readme_renderer pandas cmake nomkl numpy boost py-boost scipy scikit-learn six \
- && /usr/local/miniconda/bin/conda create -q -n test-python36 python=3.6 wheel virtualenv pytest readme_renderer pandas cmake nomkl numpy boost py-boost scipy scikit-learn six \
+ && /usr/local/miniconda/bin/conda create -q -n test-python27 python=2.7 wheel virtualenv pytest readme_renderer pandas cmake nomkl numpy boost py-boost scipy scikit-learn six joblib \
+ && /usr/local/miniconda/bin/conda create -q -n test-python36 python=3.6 wheel virtualenv pytest readme_renderer pandas cmake nomkl numpy boost py-boost scipy scikit-learn six joblib \
  && /usr/local/miniconda/bin/conda clean -a \
  # init is needed to ensure that the environment is properly set up for "source activate"
  && /usr/local/miniconda/bin/conda init \
