@@ -46,7 +46,7 @@ RUN easy_install pip && \
   hash -r && \
   $HOME/miniconda/bin/conda config --set always_yes yes --set changeps1 no && \
   $HOME/miniconda/bin/conda update -q conda && \
-  $HOME/miniconda/bin/conda create -q -n test-python27 python=2.7 nomkl numpy scipy scikit-learn
+  $HOME/miniconda/bin/conda create -q -n test-python27 python=2.7 nomkl numpy scipy scikit-learn joblib
 
 # Download maven dependencies
 RUN wget https://raw.githubusercontent.com/VowpalWabbit/vowpal_wabbit/master/java/pom.xml.in && \
