@@ -71,6 +71,6 @@ RUN wget https://raw.githubusercontent.com/VowpalWabbit/vowpal_wabbit/master/jav
 # Non-layer configuration
 # Set environment variables used by build
 ENV LD_LIBRARY_PATH="/usr/local/lib64:${LD_LIBRARY_PATH}"
-ENV JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk-1.8.0.222.b10-0.el7_6.x86_64
+ENV JAVA_HOME=/usr/lib/jvm/java-1.8.0-openjdk
 ENV BOOSTROOT=/boost_output
 ENV PATH="/usr/local/libexec/gcc/x86_64-pc-linux-gnu/9.2.0:${PATH}"
