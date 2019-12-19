@@ -10,6 +10,8 @@ This repo contains the dockerfiles used to generate images used for CI. They are
 | Ubuntu 14.04 | vowpalwabbit/ubuntu1404-build |<a href="https://hub.docker.com/r/vowpalwabbit/ubuntu1404-build"><img alt="Docker Cloud Build Status" src="https://img.shields.io/docker/cloud/build/vowpalwabbit/ubuntu1404-build"></a>| Automated |
 | CentOS 7.6.1810 | vowpalwabbit/centos7_6_1810-build | Manual | [See here](#CentOS-build-instructions) |
 | RL Ubuntu 16.04 | vowpalwabbit/rl-ubuntu-1604 | <a href="https://hub.docker.com/r/vowpalwabbit/rl-ubuntu-1604"><img alt="Docker Cloud Build Status" src="https://img.shields.io/docker/cloud/build/vowpalwabbit/rl-ubuntu-1604"></a> | Automated |
+| Dev Ubuntu 16.04 | vowpalwabbit/all-dev-ubuntu1604 | <a href="https://hub.docker.com/r/vowpalwabbit/all-dev-ubuntu1604"><img alt="Docker Cloud Build Status" src="https://img.shields.io/docker/cloud/build/vowpalwabbit/all-dev-ubuntu1604"></a> | Automated |
+
 
 ### CentOS build instructions
 ```sh
