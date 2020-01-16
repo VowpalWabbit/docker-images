@@ -8,7 +8,7 @@ RUN apt-get update \
     # Python
     python-setuptools python-dev python-software-properties \
     # Java
-    maven \
+    # maven \ # Cannot be installed using apt-get as the version is too old. It uses http by default and will not connect to the central repo.
     # default-jdk \ # does not exist in ${CurrentVersion}, so install "OpenJDK" below
     # Enable apt-add-repository
     software-properties-common \
@@ -85,6 +85,21 @@ RUN echo "oracle-java11-installer shared/accepted-oracle-license-v1-2 select tru
  && apt-get autoremove -y \
  && rm -rf /var/lib/{apt,dpkg,cache,log}
 
+# Download new version of Maven, as apt version does not use https as default.
+RUN wget https://www-us.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz -P /tmp \
+   && sudo tar xf /tmp/apache-maven-3.6.3-bin.tar.gz -C /usr/local \
+   && sudo ln -s /usr/local/apache-maven-3.6.3 /usr/local/maven \
+   && rm -rf /tmp/apache-maven-3.6.3-bin.tar.gz \
+   && sudo update-ca-certificates -f
+
+# Workaround for bug: https://bugs.launchpad.net/ubuntu/+source/maven/+bug/1764406
+ENV MAVEN_OPTS="-Djavax.net.ssl.trustStorePassword=changeit"
+ENV M2_HOME="/usr/local/maven"
+ENV MAVEN_HOME="/usr/local/maven"
+ENV PATH="/usr/local/miniconda/bin:${M2_HOME}/bin:${PATH}"
+ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/lib"
+ENV JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64/"
+
 # Download maven dependencies
 RUN wget https://raw.githubusercontent.com/VowpalWabbit/vowpal_wabbit/master/java/pom.xml.in \
  && mvn dependency:resolve -f pom.xml.in \
@@ -101,9 +116,3 @@ RUN wget http://releases.llvm.org/7.0.1/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu
  && bsdtar xvf clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-14.04.tar.xz \
  && mv clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-14.04/bin/clang-format /usr/local/bin \
  && rm -rf clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-14.04/ clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-14.04.tar.xz
-
-# Non-layer configuration
-# Set environment variables used by build
-ENV PATH="/usr/local/miniconda/bin:${PATH}"
-ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/lib"
-ENV JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64/"
