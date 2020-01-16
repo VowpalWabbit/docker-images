@@ -15,7 +15,7 @@ RUN echo "oracle-java11-installer shared/accepted-oracle-license-v1-2 select tru
 # Install build tools
 RUN apt-get install -y \
     gcc g++ libboost-all-dev zlib1g-dev help2man make libssl-dev cmake doxygen graphviz \
-    python-setuptools python-dev build-essential maven wget git && \
+    python-setuptools python-dev build-essential wget git && \
   rm -rf /var/lib/apt/lists/*
 
 # ppa for g++ 4.9 (first version that supports complete c++11. i.e. <regex>)
@@ -48,6 +48,21 @@ RUN easy_install pip && \
   $HOME/miniconda/bin/conda update -q conda && \
   $HOME/miniconda/bin/conda create -q -n test-python27 python=2.7 nomkl numpy scipy scikit-learn joblib
 
+# Download new version of Maven, as apt version does not use https as default.
+RUN wget https://www-us.apache.org/dist/maven/maven-3/3.6.3/binaries/apache-maven-3.6.3-bin.tar.gz -P /tmp \
+   && sudo tar xf /tmp/apache-maven-3.6.3-bin.tar.gz -C /usr/local \
+   && sudo ln -s /usr/local/apache-maven-3.6.3 /usr/local/maven \
+   && rm -rf /tmp/apache-maven-3.6.3-bin.tar.gz \
+   && sudo update-ca-certificates -f
+
+# Workaround for bug: https://bugs.launchpad.net/ubuntu/+source/maven/+bug/1764406
+ENV MAVEN_OPTS="-Djavax.net.ssl.trustStorePassword=changeit"
+ENV M2_HOME="/usr/local/maven"
+ENV MAVEN_HOME="/usr/local/maven"
+ENV PATH="/usr/local/miniconda/bin:${M2_HOME}/bin:${PATH}"
+ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/lib"
+ENV JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64/"
+
 # Download maven dependencies
 RUN wget https://raw.githubusercontent.com/VowpalWabbit/vowpal_wabbit/master/java/pom.xml.in && \
   mvn dependency:resolve -f pom.xml.in && \
@@ -57,10 +72,6 @@ RUN wget https://raw.githubusercontent.com/VowpalWabbit/vowpal_wabbit/master/jav
 RUN apt-get clean autoclean && \
     apt-get autoremove -y && \
     rm -rf /var/lib/{apt,dpkg,cache,log}
-
-# Set environment variables used by build
-ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/lib"
-ENV JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64/"
 
 # Download clang-format 7.0
 RUN wget http://releases.llvm.org/7.0.1/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-14.04.tar.xz && \
