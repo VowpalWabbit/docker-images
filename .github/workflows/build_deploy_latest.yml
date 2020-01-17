@@ -23,9 +23,9 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build image
         if: success()
-        run: docker build -t vowpalwabbit/${matrix.config.image_name}:latest -f ${matrix.config.dockerfile} ${matrix.config.context}
+        run: docker build -t vowpalwabbit/${{matrix.config.image_name}}:latest -f ${{matrix.config.dockerfile}} ${{matrix.config.context}}
       - name: Push to DockerHub registry
         if: success()
         uses: actions-hub/docker@master
         with:
-          args: push vowpalwabbit/${matrix.config.image_name}:latest
+          args: push vowpalwabbit/${{matrix.config.image_name}}:latest
