@@ -15,6 +15,10 @@ jobs:
         - { image_name: all-dev-ubuntu1604, dockerfile: development/ubuntu1604-dev.Dockerfile }
     steps:
       - uses: actions/checkout@master
+      - name: Modified File Filter
+        uses: nholden/modified-file-filter-action@2.0
+        with:
+          args: vowpal_wabbit/${{matrix.config.dockerfile}}
       - name: Build image
         if: success()
-        run: docker build -f ${{matrix.config.dockerfile}} .
+        run: docker build -f vowpal_wabbit/${{matrix.config.dockerfile}} .
