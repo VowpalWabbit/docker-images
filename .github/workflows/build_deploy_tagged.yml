@@ -22,17 +22,13 @@ jobs:
         if: success()
         id: vars
         run: echo ::set-output name=tag::$(echo ${GITHUB_REF:10})
-      - name: Login to docker hub
+      - name: Login, build and push image
         if: success()
-        uses: actions-hub/docker/login@master
-        env:
-          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
-          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-      - name: Build image
-        if: success()
-        run: docker build -t vowpalwabbit/${{matrix.config.image_name}}:${{ steps.vars.outputs.tag }} -f ${{matrix.config.dockerfile}} .
-      - name: Push to DockerHub registry
-        if: success()
-        uses: actions-hub/docker@master
+        uses: whoan/docker-build-with-cache-action@v3
         with:
-          args: push vowpalwabbit/${{matrix.config.image_name}}:${{ steps.vars.outputs.tag }}
+          username: "${{ secrets.DOCKER_USERNAME }}"
+          password: "${{ secrets.DOCKER_PASSWORD }}"
+          image_name: "vowpal_wabbit/${{ matrix.config.image_name }}"
+          image_tag: "${{ steps.vars.outputs.tag }}"
+          dockerfile: "${{ matrix.config.dockerfile }}"
+          push_image_and_stages: true
