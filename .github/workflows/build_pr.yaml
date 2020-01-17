@@ -23,3 +23,4 @@ jobs:
           password: "${{ secrets.DOCKER_PASSWORD }}"
           image_name: "vowpal_wabbit/${{matrix.config.image_name}}"
           dockerfile: "${{matrix.config.dockerfile}}"
+          push_image_and_stages: false 
