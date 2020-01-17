@@ -1,0 +1,31 @@
+name: Build and deploy to DockerHub
+
+on:
+  push:
+    branches:
+      - master
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        config:
+        - { image_name: ubuntu1604-build, context: vowpal_wabbit/, dockerfile: ubuntu1604-build.Dockerfile }
+        - { image_name: ubuntu1404-build, context: vowpal_wabbit/, dockerfile: ubuntu1404-build.Dockerfile }
+    steps:
+      - uses: actions/checkout@master
+      - name: Login to docker hub
+        if: success()
+        uses: actions-hub/docker/login@master
+        env:
+          DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+          DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+      - name: Build image
+        if: success()
+        run: docker build -t vowpalwabbit/${matrix.config.image_name}:latest -f ${matrix.config.dockerfile} ${matrix.config.context}
+      - name: Push to DockerHub registry
+        if: success()
+        uses: actions-hub/docker@master
+        with:
+          args: push vowpalwabbit/${matrix.config.image_name}:latest
