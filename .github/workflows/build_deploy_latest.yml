@@ -13,6 +13,9 @@ jobs:
         config:
         - { image_name: ubuntu1604-build, dockerfile: vowpal_wabbit/ubuntu1604-build.Dockerfile }
         - { image_name: ubuntu1404-build, dockerfile: vowpal_wabbit/ubuntu1404-build.Dockerfile }
+        - { image_name: centos7_6_1810-build, dockerfile: vowpal_wabbit/centos7_6_1810-build.Dockerfile }
+        - { image_name: rl-ubuntu-1604, dockerfile: reinforcement_learning/ubuntu1604-build.Dockerfile}
+        - { image_name: all-dev-ubuntu1604, dockerfile: development/ubuntu1604-dev.Dockerfile }
     steps:
       - uses: actions/checkout@master
       - name: Login to docker hub
