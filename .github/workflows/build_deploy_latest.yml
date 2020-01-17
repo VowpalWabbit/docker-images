@@ -11,8 +11,8 @@ jobs:
     strategy:
       matrix:
         config:
-        - { image_name: ubuntu1604-build, context: vowpal_wabbit/, dockerfile: ubuntu1604-build.Dockerfile }
-        - { image_name: ubuntu1404-build, context: vowpal_wabbit/, dockerfile: ubuntu1404-build.Dockerfile }
+        - { image_name: ubuntu1604-build, dockerfile: vowpal_wabbit/ubuntu1604-build.Dockerfile }
+        - { image_name: ubuntu1404-build, dockerfile: vowpal_wabbit/ubuntu1404-build.Dockerfile }
     steps:
       - uses: actions/checkout@master
       - name: Login to docker hub
@@ -23,7 +23,7 @@ jobs:
           DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
       - name: Build image
         if: success()
-        run: docker build -t vowpalwabbit/${{matrix.config.image_name}}:latest -f ${{matrix.config.dockerfile}} ${{matrix.config.context}}
+        run: docker build -t vowpalwabbit/${{matrix.config.image_name}}:latest -f ${{matrix.config.dockerfile}} .
       - name: Push to DockerHub registry
         if: success()
         uses: actions-hub/docker@master
