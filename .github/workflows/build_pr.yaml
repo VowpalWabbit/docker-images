@@ -17,4 +17,4 @@ jobs:
       - uses: actions/checkout@master
       - name: Build image
         if: success()
-        run: docker build -t vowpalwabbit/${matrix.config.image_name}:${{ steps.vars.outputs.tag }} -f ${matrix.config.dockerfile} ${matrix.config.context}
+        run: docker build -f ${{matrix.config.dockerfile}} .
