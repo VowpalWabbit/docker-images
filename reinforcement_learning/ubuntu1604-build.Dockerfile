@@ -44,7 +44,7 @@ RUN git clone https://github.com/google/flatbuffers.git \
 # Install onnxruntime
 RUN git clone https://github.com/Microsoft/onnxruntime.git \
  && cd ./onnxruntime \
- && git checkout tags/v0.5.0 \
+ && git checkout tags/v1.0.0 \
  && git submodule update --init \
  && ./build.sh --build_shared_lib --ctest_path echo --config Release \
  && cd build/Linux/Release \
