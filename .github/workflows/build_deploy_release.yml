@@ -22,4 +22,4 @@ jobs:
           image_name: "vowpalwabbit/${{matrix.config.image_name}}"
           dockerfile: "${{matrix.config.dockerfile}}"
           push_image_and_stages: true
-          build_extra_args: "--build-arg branch_or_tag={{ github.event.client_payload.tag }}"
+          build_extra_args: "--build-arg branch_or_tag=${{ github.event.client_payload.tag }}"
