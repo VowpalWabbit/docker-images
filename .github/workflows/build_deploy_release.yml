@@ -20,6 +20,7 @@ jobs:
           username: "${{ secrets.DOCKER_USERNAME }}"
           password: "${{ secrets.DOCKER_PASSWORD }}"
           image_name: "vowpalwabbit/${{matrix.config.image_name}}"
+          image_tag: "${{ github.event.client_payload.tag }}"
           dockerfile: "${{matrix.config.dockerfile}}"
           push_image_and_stages: true
           build_extra_args: "--build-arg branch_or_tag=${{ github.event.client_payload.tag }}"
