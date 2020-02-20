@@ -1,6 +1,6 @@
 FROM vowpalwabbit/ubuntu1604-build AS build
 ARG branch_or_tag
-RUN git clone -b $branch_or_tag --depth=1 https://github.com/VowpalWabbit/vowpal_wabbit.git /vw
+RUN git clone -b $branch_or_tag --depth=1 --recursive https://github.com/VowpalWabbit/vowpal_wabbit.git /vw
 WORKDIR vw
 WORKDIR build
 RUN cmake .. -DCMAKE_BUILD_TYPE=Release -DWARNINGS=Off -DSTATIC_LINK_VW=On -DBUILD_JAVA=Off -DBUILD_PYTHON=Off -DBUILD_TESTS=Off
