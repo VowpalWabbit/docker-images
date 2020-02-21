@@ -10,7 +10,7 @@ jobs:
     strategy:
       matrix:
         config:
-        - { image_name: vw-alpine, dockerfile: vowpal_wabbit/vw-alpine.Dockerfile }
+        - { image_name: vw-rel-alpine, dockerfile: vowpal_wabbit/vw-rel-alpine.Dockerfile }
     steps:
       - uses: actions/checkout@master
       - name: Login, build and push image
