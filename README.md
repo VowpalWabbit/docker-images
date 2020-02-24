@@ -11,3 +11,18 @@ This repo contains the dockerfiles used to generate images used for CI, as well 
 | CentOS 7.6.1810 | [vowpalwabbit/centos7_6_1810-build](https://hub.docker.com/r/vowpalwabbit/centos7_6_1810-build)  | [![Build and deploy to DockerHub](https://github.com/VowpalWabbit/docker-images/workflows/Build%20and%20deploy%20to%20DockerHub/badge.svg?branch=master&event=push)](https://github.com/VowpalWabbit/docker-images/actions?query=workflow%3A%22Build+and+deploy+to+DockerHub%22) |
 | RL Ubuntu 16.04 | [vowpalwabbit/rl-ubuntu-1604](https://hub.docker.com/r/vowpalwabbit/rl-ubuntu-1604)  | [![Build and deploy to DockerHub](https://github.com/VowpalWabbit/docker-images/workflows/Build%20and%20deploy%20to%20DockerHub/badge.svg?branch=master&event=push)](https://github.com/VowpalWabbit/docker-images/actions?query=workflow%3A%22Build+and+deploy+to+DockerHub%22) |
 | Dev Ubuntu 16.04 | [vowpalwabbit/all-dev-ubuntu1604](https://hub.docker.com/r/vowpalwabbit/all-dev-ubuntu1604) | [![Build and deploy to DockerHub](https://github.com/VowpalWabbit/docker-images/workflows/Build%20and%20deploy%20to%20DockerHub/badge.svg?branch=master&event=push)](https://github.com/VowpalWabbit/docker-images/actions?query=workflow%3A%22Build+and+deploy+to+DockerHub%22) |
+| Rel Alpine | [vowpalwabbit/vw-rel-alpine](https://hub.docker.com/r/vowpalwabbit/vw-rel-alpine) | ![Build and deploy vw image to DockerHub](https://github.com/VowpalWabbit/docker-images/workflows/Build%20and%20deploy%20vw%20image%20to%20DockerHub/badge.svg) |
+
+## Release steps
+
+Use Token with access to repo and hook permissions.
+Update tag to appropriate value.
+
+```
+curl -H "Accept: application/vnd.github.everest-preview+json" \
+    -H "Authorization: token _SECRET_TOKEN_" \
+    --request POST \
+    --data '{"event_type": "push-image", "client_payload": { "tag": "0.8.8"}}' \
+    https://api.github.com/repos/VowpalWabbit/docker-images/dispatches
+```
+
