@@ -13,6 +13,7 @@ jobs:
         - { image_name: centos7_6_1810-build, dockerfile: vowpal_wabbit/centos7_6_1810-build.Dockerfile }
         - { image_name: rl-ubuntu-1604, dockerfile: reinforcement_learning/ubuntu1604-build.Dockerfile}
         - { image_name: all-dev-ubuntu1604, dockerfile: development/ubuntu1604-dev.Dockerfile }
+        - { image_name: vw-rel-alpine, dockerfile: vowpal_wabbit/vw-rel-alpine.Dockerfile }
     steps:
       - uses: actions/checkout@master
       - name: Build image

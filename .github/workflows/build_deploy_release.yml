@@ -1,0 +1,26 @@
+name: Build and deploy vw image to DockerHub
+
+on:
+  repository_dispatch:
+    types: push-image
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        config:
+        - { image_name: vw-rel-alpine, dockerfile: vowpal_wabbit/vw-rel-alpine.Dockerfile }
+    steps:
+      - uses: actions/checkout@master
+      - name: Login, build and push image
+        if: success()
+        uses: whoan/docker-build-with-cache-action@v3
+        with:
+          username: "${{ secrets.DOCKER_USERNAME }}"
+          password: "${{ secrets.DOCKER_PASSWORD }}"
+          image_name: "vowpalwabbit/${{matrix.config.image_name}}"
+          image_tag: "${{ github.event.client_payload.tag }}"
+          dockerfile: "${{matrix.config.dockerfile}}"
+          push_image_and_stages: true
+          build_extra_args: "--build-arg branch_or_tag=${{ github.event.client_payload.tag }}"
