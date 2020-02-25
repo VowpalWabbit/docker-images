@@ -15,7 +15,7 @@ This repo contains the dockerfiles used to generate images used for CI, as well 
 
 ## Release steps
 
-Use Token with access to repo and hook permissions.
+Use token with access to repo and hook permissions.
 Update tag to appropriate value.
 
 ```
@@ -25,4 +25,3 @@ curl -H "Accept: application/vnd.github.everest-preview+json" \
     --data '{"event_type": "push-image", "client_payload": { "tag": "0.8.8"}}' \
     https://api.github.com/repos/VowpalWabbit/docker-images/dispatches
 ```
-
