@@ -25,6 +25,8 @@ RUN apt-get update && \
     libboost-thread-dev \
     libssl-dev \
     zlib1g-dev \
+    # Required to run apt-get in the container
+    sudo \
  # Do this cleanup every time to ensure minimal layer sizes
  # TODO: Turn this into a script
  && apt-get clean autoclean \
