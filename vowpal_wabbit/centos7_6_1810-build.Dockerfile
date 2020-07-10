@@ -41,7 +41,7 @@ RUN wget ftp://ftp.mirrorservice.org/sites/sourceware.org/pub/gcc/releases/gcc-9
    && cd .. && rm -rf gcc-9.2.0.tar.gz gcc-9.2.0 \
    && chmod +x /usr/local/libexec/gcc/x86_64-pc-linux-gnu/9.2.0/cc1plus
 
-# Install FlatBuffers 1.12
+# Install FlatBuffers 1.12.0
 RUN version=1.12.0 && \
    wget https://github.com/google/flatbuffers/archive/v$version.tar.gz \
    && tar -xzf v$version.tar.gz \

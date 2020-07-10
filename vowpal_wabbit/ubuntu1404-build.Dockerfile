@@ -59,9 +59,9 @@ RUN version=3.13 && build=5 \
  && for filename in /opt/cmake/bin/*; do echo Registering $filename; ln -fs $filename /usr/local/bin/`basename $filename`; done \
  && rm cmake-$version.$build-Linux-x86_64.sh
 
-# Install FlatBuffers 1.12
+# Install FlatBuffers 1.12.0
 RUN version=1.12.0 && \
- wget https://github.com/google/flatbuffers/archive/v$versiontar.gz \
+ wget https://github.com/google/flatbuffers/archive/v$version.tar.gz \
  && tar -xzf v$version.tar.gz \
  && cd flatbuffers-$version \
  && mkdir build \
