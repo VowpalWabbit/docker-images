@@ -53,7 +53,7 @@ RUN version=1.12.0 && \
  && mkdir build \
  && cd build \
  && cmake -G "Unix Makefiles" -DFLATBUFFERS_BUILD_TESTS=Off -DFLATBUFFERS_INSTALL=On -DCMAKE_BUILD_TYPE=Release -DFLATBUFFERS_BUILD_FLATHASH=Off .. \
- && make install -j 4 \
+ && make install -j$(nproc) \
  && cd ../../ \
  && rm -rf flatbuffers-$version \
  && rm v$version.tar.gz
