@@ -59,17 +59,19 @@ RUN version=3.13 && build=5 \
  && for filename in /opt/cmake/bin/*; do echo Registering $filename; ln -fs $filename /usr/local/bin/`basename $filename`; done \
  && rm cmake-$version.$build-Linux-x86_64.sh
 
-RUN wget https://github.com/google/flatbuffers/archive/v1.12.0.tar.gz \
- && tar -xzf v1.12.0.tar.gz \
- && cd flatbuffers-1.12.0 \
+# Install FlatBuffers 1.12
+RUN version=1.12.0 && \
+ wget https://github.com/google/flatbuffers/archive/v$versiontar.gz \
+ && tar -xzf v$version.tar.gz \
+ && cd flatbuffers-$version \
  && mkdir build \
  && cd build \
  && cmake -G "Unix Makefiles" -DFLATBUFFERS_BUILD_TESTS=Off -DFLATBUFFERS_INSTALL=On -DCMAKE_BUILD_TYPE=Release -DFLATBUFFERS_BUILD_FLATHASH=Off .. \
  && make install -j 4 \
  && cd ../../ \
- && rm -rf flatbuffers-1.12.0 \
- && rm v1.12.0.tar.gz
- 
+ && rm -rf flatbuffers-$version \
+ && rm v$version.tar.gz
+
 # Install Python tools, Miniconda, and setup environment
 RUN easy_install pip \
  && pip install cpp-coveralls wheel virtualenv pytest readme_renderer \

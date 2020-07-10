@@ -41,16 +41,18 @@ RUN wget ftp://ftp.mirrorservice.org/sites/sourceware.org/pub/gcc/releases/gcc-9
    && cd .. && rm -rf gcc-9.2.0.tar.gz gcc-9.2.0 \
    && chmod +x /usr/local/libexec/gcc/x86_64-pc-linux-gnu/9.2.0/cc1plus
 
-RUN wget https://github.com/google/flatbuffers/archive/v1.12.0.tar.gz \
-   && tar -xzf v1.12.0.tar.gz \
-   && cd flatbuffers-1.12.0 \
+# Install FlatBuffers 1.12
+RUN version=1.12.0 && \
+   wget https://github.com/google/flatbuffers/archive/v$version.tar.gz \
+   && tar -xzf v$version.tar.gz \
+   && cd flatbuffers-$version \
    && mkdir build \
    && cd build \
    && cmake -G "Unix Makefiles" -DFLATBUFFERS_BUILD_TESTS=Off -DFLATBUFFERS_INSTALL=On -DCMAKE_BUILD_TYPE=Release -DFLATBUFFERS_BUILD_FLATHASH=Off .. \
    && make install -j 4 \
    && cd ../../ \
-   && rm -rf flatbuffers-1.12.0 \
-   && rm v1.12.0.tar.gz
+   && rm -rf flatbuffers-$version \
+   && rm v$version.tar.gz
 
 # Update path so it uses gcc 9.2
 ENV PATH="/usr/local/bin:${PATH}"
