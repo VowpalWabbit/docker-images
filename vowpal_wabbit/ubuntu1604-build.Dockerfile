@@ -53,7 +53,8 @@ RUN wget https://github.com/google/flatbuffers/archive/v1.12.0.tar.gz \
  && cmake -G "Unix Makefiles" -DFLATBUFFERS_BUILD_TESTS=Off -DFLATBUFFERS_INSTALL=On -DCMAKE_BUILD_TYPE=Release -DFLATBUFFERS_BUILD_FLATHASH=Off .. \
  && make install -j 4 \
  && cd ../../ \
- && rm -rf flatbuffers-1.12.0
+ && rm -rf flatbuffers-1.12.0 \
+ && rm v1.12.0.tar.gz
 
 # Install Python tools, Miniconda, and setup environment
 RUN easy_install pip \
