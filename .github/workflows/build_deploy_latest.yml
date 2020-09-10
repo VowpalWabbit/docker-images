@@ -11,12 +11,12 @@ jobs:
     strategy:
       matrix:
         config:
-        - { image_name: ubuntu1604-build, dockerfile: vowpal_wabbit/ubuntu1604-build.Dockerfile }
-        - { image_name: ubuntu1404-build, dockerfile: vowpal_wabbit/ubuntu1404-build.Dockerfile }
-        - { image_name: centos7_6_1810-build, dockerfile: vowpal_wabbit/centos7_6_1810-build.Dockerfile }
-        - { image_name: manylinux2010-build, dockerfile: vowpal_wabbit/manylinux-2010/manylinux2010-build.Dockerfile }
-        - { image_name: rl-ubuntu-1604, dockerfile: reinforcement_learning/ubuntu1604-build.Dockerfile}
-        - { image_name: all-dev-ubuntu1604, dockerfile: development/ubuntu1604-dev.Dockerfile }
+        - { image_name: ubuntu1604-build, dockerfile: vowpal_wabbit/ubuntu1604-build.Dockerfile, context: ./ }
+        - { image_name: ubuntu1404-build, dockerfile: vowpal_wabbit/ubuntu1404-build.Dockerfile, context: ./ }
+        - { image_name: centos7_6_1810-build, dockerfile: vowpal_wabbit/centos7_6_1810-build.Dockerfile, context: ./ }
+        - { image_name: manylinux2010-build, dockerfile: vowpal_wabbit/manylinux-2010/manylinux2010-build.Dockerfile, context: ./vowpal_wabbit/manylinux-2010/ }
+        - { image_name: rl-ubuntu-1604, dockerfile: reinforcement_learning/ubuntu1604-build.Dockerfile, context: ./}
+        - { image_name: all-dev-ubuntu1604, dockerfile: development/ubuntu1604-dev.Dockerfile, context: ./ }
     steps:
       - uses: actions/checkout@master
       - name: Login, build and push image
@@ -27,4 +27,5 @@ jobs:
           password: "${{ secrets.DOCKER_PASSWORD }}"
           image_name: "vowpalwabbit/${{matrix.config.image_name}}"
           dockerfile: "${{matrix.config.dockerfile}}"
+          context: "${{ matrix.config.context }}"
           push_image_and_stages: true
