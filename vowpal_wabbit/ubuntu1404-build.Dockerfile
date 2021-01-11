@@ -4,7 +4,7 @@ FROM ubuntu:14.04
 RUN apt-get update \
  && apt-get install -y --no-install-recommends \
     # C++
-    build-essential g++ gcc git make wget \
+    build-essential g++ gcc git make wget ccache \
     # Python
     python-setuptools python-dev python-software-properties \
     # Java
