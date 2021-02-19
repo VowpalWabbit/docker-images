@@ -15,13 +15,15 @@ This repo contains the dockerfiles used to generate images used for CI, as well 
 
 ## Release steps
 
-Use token with access to repo and hook permissions.
-Update tag to appropriate value.
+1. [Generate token](https://docs.github.com/en/github/authenticating-to-github/creating-a-personal-access-token) with `workflow` permissions.
+2. Update tag to appropriate value.
 
-```
+```sh
+SECRET_TOKEN=my_secret_token
+TAG=0.8.8
 curl -H "Accept: application/vnd.github.everest-preview+json" \
-    -H "Authorization: token _SECRET_TOKEN_" \
+    -H "Authorization: token $SECRET_TOKEN" \
     --request POST \
-    --data '{"event_type": "push-image", "client_payload": { "tag": "0.8.8"}}' \
+    --data '{"event_type": "push-image", "client_payload": { "tag": "$TAG"}}' \
     https://api.github.com/repos/VowpalWabbit/docker-images/dispatches
 ```
