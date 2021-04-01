@@ -1,8 +1,11 @@
 name: Build and deploy vw image to DockerHub
 
 on:
-  repository_dispatch:
-    types: push-image
+  workflow_dispatch:
+    inputs:
+      build_tag:
+        description: 'Which tag to build'
+        required: true
 
 jobs:
   build:
@@ -20,7 +23,7 @@ jobs:
           username: "${{ secrets.DOCKER_USERNAME }}"
           password: "${{ secrets.DOCKER_PASSWORD }}"
           image_name: "vowpalwabbit/${{matrix.config.image_name}}"
-          image_tag: "${{ github.event.client_payload.tag }}"
+          image_tag: "${{ github.event.inputs.build_tag }}"
           dockerfile: "${{matrix.config.dockerfile}}"
           push_image_and_stages: true
-          build_extra_args: "--build-arg branch_or_tag=${{ github.event.client_payload.tag }}"
+          build_extra_args: "--build-arg branch_or_tag=${{ github.event.inputs.build_tag }}"
