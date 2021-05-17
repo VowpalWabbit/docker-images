@@ -12,12 +12,14 @@ RUN apt-get update && \
         ca-certificates \
         # Core build tools
         build-essential cmake g++ \
-        # Test deps
+        # VW Test deps
         libboost-test-dev netcat git python-is-python3 \
-        # Boost deps
+        # VW Boost deps
         libboost-dev libboost-program-options-dev libboost-math-dev  \
-        # Other deps
+        # VW Other deps
         libflatbuffers-dev zlib1g-dev \
         # Clang tools
         clang-format clang-tidy \
+        # RLClientLib deps
+        libssl-dev libcpprest-dev \
     && rm -rf /var/lib/apt/lists/*
