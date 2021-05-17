@@ -15,7 +15,7 @@ RUN apt-get update && \
         # VW Test deps
         libboost-test-dev netcat git python-is-python3 \
         # VW Boost deps
-        libboost-dev libboost-program-options-dev libboost-math-dev  \
+        libboost-dev libboost-program-options-dev libboost-math-dev libboost-system-dev \
         # VW Other deps
         libflatbuffers-dev zlib1g-dev \
         # Clang tools
