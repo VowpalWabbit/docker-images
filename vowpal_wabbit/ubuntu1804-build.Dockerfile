@@ -44,6 +44,7 @@ RUN version=1.12.0 && \
  && rm -rf flatbuffers-$version \
  && rm v$version.tar.gz
 
+# Same version as vendored dep https://github.com/VowpalWabbit/vowpal_wabbit/tree/master/ext_libs
 RUN git clone https://github.com/fmtlib/fmt.git \
  && cd fmt \
  && git checkout 835b910e7d758efdfdce9f23df1b190deb3373db \
@@ -52,6 +53,7 @@ RUN git clone https://github.com/fmtlib/fmt.git \
  && cd .. \
  && rm -rf fmt
 
+# Same version as vendored dep https://github.com/VowpalWabbit/vowpal_wabbit/tree/master/ext_libs
 RUN git clone https://github.com/gabime/spdlog.git \
  && cd spdlog \
  && git checkout de0dbfa3596a18cd70a4619b6a9766847a941276 \
