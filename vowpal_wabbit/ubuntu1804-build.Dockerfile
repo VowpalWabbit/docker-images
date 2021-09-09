@@ -63,8 +63,8 @@ RUN git clone https://github.com/gabime/spdlog.git \
 
 RUN git clone https://github.com/google/googletest.git googletest \
  && cd googletest \
- && git checkout v1.10.0 \
- && cmake -B build -S . -G Ninja --DCMAKE_BUILD_TYPE=Release \
+ && git checkout "release-1.10.0"  \
+ && cmake -B build -S . -G Ninja -DCMAKE_BUILD_TYPE=Release \
  && cmake --build build --target install \
  && cd .. \
  && rm -rf googletest
