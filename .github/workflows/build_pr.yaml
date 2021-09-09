@@ -1,5 +1,4 @@
 name: Build
-
 on: pull_request
 
 jobs:
@@ -8,19 +7,43 @@ jobs:
     strategy:
       matrix:
         config:
-        - { image_name: ubuntu1804-build, dockerfile: vowpal_wabbit/ubuntu1804-build.Dockerfile, context: ./ }
-        - { image_name: centos7_6_1810-build, dockerfile: vowpal_wabbit/centos7_6_1810-build.Dockerfile, context: ./ }
-        - { image_name: manylinux2010-build, dockerfile: manylinux2010-build.Dockerfile, context: ./vowpal_wabbit/manylinux-2010/ }
-        - { image_name: rl-ubuntu-1604, dockerfile: reinforcement_learning/ubuntu1604-build.Dockerfile, context: ./}
-        - { image_name: all-dev-ubuntu1604, dockerfile: development/ubuntu1604-dev.Dockerfile, context: ./ }
-        - { image_name: vw-rel-alpine, dockerfile: vowpal_wabbit/vw-rel-alpine.Dockerfile, context: ./ }
+          - image_name: ubuntu1804-build
+            dockerfile: vowpal_wabbit/ubuntu1804-build.Dockerfile
+            context: ./
+            changes_path_filter: vowpal_wabbit/ubuntu1804-build.Dockerfile
+          - image_name: centos7_6_1810-build
+            dockerfile: vowpal_wabbit/centos7_6_1810-build.Dockerfile
+            context: ./
+            changes_path_filter: vowpal_wabbit/centos7_6_1810-build.Dockerfile
+          - image_name: manylinux2010-build
+            dockerfile: manylinux2010-build.Dockerfile
+            context: ./vowpal_wabbit/manylinux-2010/**
+            changes_path_filter: vowpal_wabbit/manylinux-2010/**
+          - image_name: rl-ubuntu-1604
+            dockerfile: reinforcement_learning/ubuntu1604-build.Dockerfile
+            context: ./
+            changes_path_filter: reinforcement_learning/ubuntu1604-build.Dockerfile
+          - image_name: all-dev-ubuntu1604
+            dockerfile: development/ubuntu1604-dev.Dockerfile
+            context: ./
+            changes_path_filter: development/ubuntu1604-dev.Dockerfile
+          - image_name: vw-rel-alpine
+            dockerfile: vowpal_wabbit/vw-rel-alpine.Dockerfile
+            context: ./
+            changes_path_filter: vowpal_wabbit/vw-rel-alpine.Dockerfile
     steps:
       - uses: actions/checkout@master
+      - id: changes
+        uses: dorny/paths-filter@v2
+        with:
+          filters: |
+            src:
+              - "${{matrix.config.changes_path_filter}}"
       - name: Build image
-        if: success()
+        if: steps.changes.outputs.src == 'true'
         uses: whoan/docker-build-with-cache-action@v4
         with:
-          image_name: "vowpalwabbit/${{matrix.config.image_name}}"
-          dockerfile: "${{matrix.config.dockerfile}}"
-          context: "${{matrix.config.context}}"
+          image_name: 'vowpalwabbit/${{matrix.config.image_name}}'
+          dockerfile: '${{matrix.config.dockerfile}}'
+          context: '${{matrix.config.context}}'
           push_image_and_stages: false
