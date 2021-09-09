@@ -8,7 +8,7 @@ RUN apt-get update && \
     # Java (default-jdk === OpenJDK)
     maven default-jdk \
     # test dependencies
-    libboost-test-dev netcat python3 \
+    libboost-test-dev netcat python3 python3-pip \
     # VW Boost deps
     libboost-dev libboost-program-options-dev libboost-math-dev libboost-system-dev \
     # VW Other deps
@@ -68,12 +68,6 @@ RUN git clone https://github.com/google/googletest.git googletest \
  && cmake --build build --target install \
  && cd .. \
  && rm -rf googletest
-
-# Download clang-format 7.0
-RUN wget http://releases.llvm.org/7.0.1/clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-16.04.tar.xz \
- && tar xvf clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-16.04.tar.xz \
- && mv clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-16.04/bin/clang-format /usr/local/bin \
- && rm -rf clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-16.04/ clang+llvm-7.0.1-x86_64-linux-gnu-ubuntu-16.04.tar.xz
 
 # Download Maven dependencies
 RUN wget https://raw.githubusercontent.com/VowpalWabbit/vowpal_wabbit/master/java/pom.xml.in \
