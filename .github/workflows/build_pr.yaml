@@ -19,7 +19,7 @@ jobs:
       - uses: actions/checkout@master
       - name: Build image
         if: success()
-        uses: whoan/docker-build-with-cache-action@v4
+        uses: whoan/docker-build-with-cache-action@v5
         with:
           image_name: "vowpalwabbit/${{matrix.config.image_name}}"
           dockerfile: "${{matrix.config.dockerfile}}"
