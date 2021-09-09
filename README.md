@@ -9,6 +9,7 @@ Tags on DockerHub correspond to [tags](https://github.com/VowpalWabbit/docker-im
 | Image | Docker Repository | Type |
 |---|---|---|
 | [Rel Alpine](./vowpal_wabbit/vw-rel-alpine.Dockerfile) | [vowpalwabbit/vw-rel-alpine](https://hub.docker.com/r/vowpalwabbit/vw-rel-alpine) |  Packaged binary |
+| [Ubuntu 18.04](./vowpal_wabbit/ubuntu1804-build.Dockerfile) | not yet published |  CI |
 | [Ubuntu 16.04](./vowpal_wabbit/ubuntu1604-build.Dockerfile) | [vowpalwabbit/ubuntu1604-build](https://hub.docker.com/r/vowpalwabbit/ubuntu1604-build) |  CI |
 | [Ubuntu 14.04](./vowpal_wabbit/ubuntu1404-build.Dockerfile) | [vowpalwabbit/ubuntu1404-build](https://hub.docker.com/r/vowpalwabbit/ubuntu1404-build) |  CI |
 | [Python ManyLinux 2010](./vowpal_wabbit/manylinux-2010/manylinux2010-build.Dockerfile) | [vowpalwabbit/manylinux2010-build](https://hub.docker.com/r/vowpalwabbit/manylinux2010-build) |  CI/Python packaging |
