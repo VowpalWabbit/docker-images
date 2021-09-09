@@ -14,7 +14,6 @@ cd $BOOST_ROOT
 
 ./bootstrap.sh --with-libraries=program_options,system,thread,test,chrono,date_time,atomic
 ./b2 -j$(nproc) cxxflags="-fPIC" variant=release link=static install
-./b2 -j$(nproc) cxxflags="-fPIC" variant=release link=static --with-python --user-config="/python-config.jam" python="3.5" install
 ./b2 -j$(nproc) cxxflags="-fPIC" variant=release link=static --with-python --user-config="/python-config.jam" python="3.6" install
 ./b2 -j$(nproc) cxxflags="-fPIC" variant=release link=static --with-python --user-config="/python-config.jam" python="3.7" install
 ./b2 -j$(nproc) cxxflags="-fPIC" variant=release link=static --with-python --user-config="/python-config.jam" python="3.8" install
