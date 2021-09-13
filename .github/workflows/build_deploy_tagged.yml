@@ -15,6 +15,7 @@ jobs:
         - { image_name: centos7_6_1810-build, dockerfile: vowpal_wabbit/centos7_6_1810-build.Dockerfile, context: ./ }
         - { image_name: manylinux2010-build, dockerfile: manylinux2010-build.Dockerfile, context: ./vowpal_wabbit/manylinux-2010/ }
         - { image_name: rl-ubuntu-1604, dockerfile: reinforcement_learning/ubuntu1604-build.Dockerfile, context: ./}
+        - { image_name: rl-ubuntu-1804, dockerfile: reinforcement_learning/ubuntu1804-build.Dockerfile, context: ./}
         - { image_name: all-dev-ubuntu1604, dockerfile: development/ubuntu1604-dev.Dockerfile, context: ./ }
     steps:
       - uses: actions/checkout@master
