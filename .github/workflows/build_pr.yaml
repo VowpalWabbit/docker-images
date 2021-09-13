@@ -11,6 +11,10 @@ jobs:
             dockerfile: vowpal_wabbit/ubuntu1804-build.Dockerfile
             context: ./
             changes_path_filter: vowpal_wabbit/ubuntu1804-build.Dockerfile
+          - image_name: ubuntu2004-build
+            dockerfile: vowpal_wabbit/ubuntu2004-build.Dockerfile
+            context: ./
+            changes_path_filter: vowpal_wabbit/ubuntu2004-build.Dockerfile
           - image_name: centos7_6_1810-build
             dockerfile: vowpal_wabbit/centos7_6_1810-build.Dockerfile
             context: ./
@@ -19,18 +23,14 @@ jobs:
             dockerfile: manylinux2010-build.Dockerfile
             context: ./vowpal_wabbit/manylinux-2010/**
             changes_path_filter: vowpal_wabbit/manylinux-2010/**
-          - image_name: rl-ubuntu-1604
-            dockerfile: reinforcement_learning/ubuntu1604-build.Dockerfile
-            context: ./
-            changes_path_filter: reinforcement_learning/ubuntu1604-build.Dockerfile
+          - image_name: rl-manylinux2010-build
+            dockerfile: rl-manylinux2010-build.Dockerfile
+            context: ./reinforcement_learning/manylinux-2010/**
+            changes_path_filter: reinforcement_learning/manylinux-2010/**
           - image_name: rl-ubuntu-1804
             dockerfile: reinforcement_learning/ubuntu1804-build.Dockerfile
             context: ./
             changes_path_filter: reinforcement_learning/ubuntu1804-build.Dockerfile
-          - image_name: all-dev-ubuntu1604
-            dockerfile: development/ubuntu1604-dev.Dockerfile
-            context: ./
-            changes_path_filter: development/ubuntu1604-dev.Dockerfile
           - image_name: vw-rel-alpine
             dockerfile: vowpal_wabbit/vw-rel-alpine.Dockerfile
             context: ./

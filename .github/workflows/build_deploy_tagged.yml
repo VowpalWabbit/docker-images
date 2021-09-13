@@ -12,11 +12,11 @@ jobs:
       matrix:
         config:
         - { image_name: ubuntu1804-build, dockerfile: vowpal_wabbit/ubuntu1804-build.Dockerfile, context: ./ }
+        - { image_name: ubuntu2004-build, dockerfile: vowpal_wabbit/ubuntu2004-build.Dockerfile, context: ./ }
         - { image_name: centos7_6_1810-build, dockerfile: vowpal_wabbit/centos7_6_1810-build.Dockerfile, context: ./ }
         - { image_name: manylinux2010-build, dockerfile: manylinux2010-build.Dockerfile, context: ./vowpal_wabbit/manylinux-2010/ }
-        - { image_name: rl-ubuntu-1604, dockerfile: reinforcement_learning/ubuntu1604-build.Dockerfile, context: ./}
+        - { image_name: rl-manylinux2010-build, dockerfile: rl-manylinux2010-build.Dockerfile, context: ./reinforcement_learning/manylinux-2010/ }
         - { image_name: rl-ubuntu-1804, dockerfile: reinforcement_learning/ubuntu1804-build.Dockerfile, context: ./}
-        - { image_name: all-dev-ubuntu1604, dockerfile: development/ubuntu1604-dev.Dockerfile, context: ./ }
     steps:
       - uses: actions/checkout@master
       - name: Extract version out of ref
