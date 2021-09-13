@@ -23,6 +23,10 @@ jobs:
             dockerfile: reinforcement_learning/ubuntu1604-build.Dockerfile
             context: ./
             changes_path_filter: reinforcement_learning/ubuntu1604-build.Dockerfile
+          - image_name: rl-ubuntu-1804
+            dockerfile: reinforcement_learning/ubuntu1804-build.Dockerfile
+            context: ./
+            changes_path_filter: reinforcement_learning/ubuntu1804-build.Dockerfile
           - image_name: all-dev-ubuntu1604
             dockerfile: development/ubuntu1604-dev.Dockerfile
             context: ./
