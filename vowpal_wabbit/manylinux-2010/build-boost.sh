@@ -18,6 +18,7 @@ cd $BOOST_ROOT
 ./b2 -j$(nproc) cxxflags="-fPIC" variant=release link=static --with-python --user-config="/python-config.jam" python="3.7" install
 ./b2 -j$(nproc) cxxflags="-fPIC" variant=release link=static --with-python --user-config="/python-config.jam" python="3.8" install
 ./b2 -j$(nproc) cxxflags="-fPIC" variant=release link=static --with-python --user-config="/python-config.jam" python="3.9" install
+./b2 -j$(nproc) cxxflags="-fPIC" variant=release link=static --with-python --user-config="/python-config.jam" python="3.10" install
 
 cd /
 rm -rf /tmp/boost_src/ /tmp/boost.tar.gz
