@@ -14,11 +14,15 @@ jobs:
         - { image_name: ubuntu1804-build, dockerfile: vowpal_wabbit/ubuntu1804-build.Dockerfile, context: ./ }
         - { image_name: ubuntu2004-build, dockerfile: vowpal_wabbit/ubuntu2004-build.Dockerfile, context: ./ }
         - { image_name: centos7_6_1810-build, dockerfile: vowpal_wabbit/centos7_6_1810-build.Dockerfile, context: ./ }
-        - { image_name: manylinux2010-build, dockerfile: manylinux2010-build.Dockerfile, context: ./vowpal_wabbit/manylinux-2010/ }
+        - { image_name: manylinux2010-build, dockerfile: manylinux2010-build.Dockerfile, context: ./vowpal_wabbit/manylinux/ }
+        - { image_name: manylinux2014_aarch64-build, dockerfile: manylinux2014_aarch64-build.Dockerfile, context: ./vowpal_wabbit/manylinux/ }
         - { image_name: rl-manylinux2010-build, dockerfile: rl-manylinux2010-build.Dockerfile, context: ./reinforcement_learning/manylinux-2010/ }
         - { image_name: rl-ubuntu-1804, dockerfile: reinforcement_learning/ubuntu1804-build.Dockerfile, context: ./}
     steps:
       - uses: actions/checkout@master
+      - name: Set up QEMU
+        if: ${{ matrix.config.image_name == 'manylinux2014_aarch64-build' }}
+        uses: docker/setup-qemu-action@v1
       - name: Extract version out of ref
         if: success()
         id: vars
