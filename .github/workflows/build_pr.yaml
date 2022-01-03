@@ -21,8 +21,12 @@ jobs:
             changes_path_filter: vowpal_wabbit/centos7_6_1810-build.Dockerfile
           - image_name: manylinux2010-build
             dockerfile: manylinux2010-build.Dockerfile
-            context: ./vowpal_wabbit/manylinux-2010/
-            changes_path_filter: vowpal_wabbit/manylinux-2010/**
+            context: ./vowpal_wabbit/manylinux/
+            changes_path_filter: vowpal_wabbit/manylinux/**
+          - image_name: manylinux2014_aarch64-build
+            dockerfile: manylinux2014_aarch64-build.Dockerfile
+            context: ./vowpal_wabbit/manylinux/
+            changes_path_filter: vowpal_wabbit/manylinux/**
           - image_name: rl-manylinux2010-build
             dockerfile: rl-manylinux2010-build.Dockerfile
             context: ./reinforcement_learning/manylinux-2010/
@@ -43,6 +47,9 @@ jobs:
           filters: |
             src:
               - "${{matrix.config.changes_path_filter}}"
+      - name: Set up QEMU
+        if: ${{ matrix.config.image_name == 'manylinux2014_aarch64-build' }}
+        uses: docker/setup-qemu-action@v1
       - name: Build image
         if: steps.changes.outputs.src == 'true'
         uses: whoan/docker-build-with-cache-action@v4
