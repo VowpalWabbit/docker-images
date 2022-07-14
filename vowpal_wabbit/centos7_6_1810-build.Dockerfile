@@ -89,4 +89,4 @@ ENV BOOSTROOT=/boost_output
 ENV PATH="/usr/local/libexec/gcc/x86_64-pc-linux-gnu/9.2.0:${PATH}"
 
 # Mark VW repos as safe
-RUN git config --global --add safe.directory /__w/vowpal_wabbit/vowpal_wabbit
+RUN git config --global --add safe.directory "/__w/vowpal_wabbit/*"
