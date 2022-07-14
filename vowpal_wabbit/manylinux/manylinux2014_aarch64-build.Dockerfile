@@ -32,4 +32,4 @@ COPY python-config.jam python-config.jam
 RUN chmod +x build-boost.sh && ./build-boost.sh
 
 # Mark VW repos as safe
-RUN git config --global --add safe.directory "*"
+RUN git config --global --add safe.directory "/__w/vowpal_wabbit/*"
