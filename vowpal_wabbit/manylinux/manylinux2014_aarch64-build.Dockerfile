@@ -30,6 +30,3 @@ RUN version=1.12.0 && \
 COPY build-boost.sh build-boost.sh
 COPY python-config.jam python-config.jam
 RUN chmod +x build-boost.sh && ./build-boost.sh
-
-# Mark VW repos as safe
-RUN git config --global --add safe.directory "*"

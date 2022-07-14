@@ -78,6 +78,3 @@ RUN wget https://raw.githubusercontent.com/VowpalWabbit/vowpal_wabbit/master/jav
 # Set environment variables used by build
 ENV LD_LIBRARY_PATH="${LD_LIBRARY_PATH}:/usr/local/lib"
 ENV JAVA_HOME="/usr/lib/jvm/java-11-openjdk-amd64/"
-
-# Mark VW repos as safe
-RUN git config --global --add safe.directory "*"
