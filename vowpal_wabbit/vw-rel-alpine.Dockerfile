@@ -1,5 +1,5 @@
 FROM vowpalwabbit/ubuntu2004-build AS build
-ARG branch_or_tag=8.8.0
+ARG branch_or_tag=9.4.0
 RUN git clone -b $branch_or_tag --depth=1 --recursive https://github.com/VowpalWabbit/vowpal_wabbit.git /vw
 
 WORKDIR /vw
