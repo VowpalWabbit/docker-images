@@ -21,10 +21,15 @@ Tags on DockerHub correspond to [tags](https://github.com/VowpalWabbit/docker-im
 
 ### Rel Alpine
 
+These steps are for a VW release.
+
 1. Navigate to [workflow](https://github.com/VowpalWabbit/docker-images/actions/workflows/build_deploy_release.yml)
 2. Click `Run workflow`
 3. Enter the tag to build and submit
 
 ### Other images
+
+These steps are only necessary if a new tagged version of the various CI images are needed.
+
 1. [Create a release](https://github.com/VowpalWabbit/docker-images/releases/new) to automatically create a tag
 2. Monitor [build status](https://github.com/VowpalWabbit/docker-images/actions/workflows/build_deploy_latest.yml)
