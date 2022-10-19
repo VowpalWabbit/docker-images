@@ -27,6 +27,10 @@ jobs:
             dockerfile: manylinux2014_aarch64-build.Dockerfile
             context: ./vowpal_wabbit/manylinux/
             changes_path_filter: vowpal_wabbit/manylinux/**
+          - image_name: manylinux2014_x86_64-build
+            dockerfile: manylinux2014_x86_64-build.Dockerfile
+            context: ./vowpal_wabbit/manylinux/
+            changes_path_filter: vowpal_wabbit/manylinux/**
           - image_name: rl-manylinux2010-build
             dockerfile: rl-manylinux2010-build.Dockerfile
             context: ./reinforcement_learning/manylinux-2010/
