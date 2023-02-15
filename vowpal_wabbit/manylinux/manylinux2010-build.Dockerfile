@@ -6,9 +6,9 @@ RUN version=3.18 && build=2 \
    && wget -qO- "https://cmake.org/files/v$version/cmake-$version.$build-Linux-x86_64.tar.gz" \
    | tar --strip-components=1 -xz -C /usr/local
 
-RUN wget -O zlib.tar.gz 'https://zlib.net/fossils/zlib-1.2.8.tar.gz' \
+RUN wget -O zlib.tar.gz 'https://zlib.net/fossils/zlib-1.2.13.tar.gz' \
    && tar xvzf zlib.tar.gz \
-   && cd zlib-1.2.8 \
+   && cd zlib-1.2.13 \
    && ./configure --static --archs=-fPIC \
    && make -j$(nproc) \
    && make install \
