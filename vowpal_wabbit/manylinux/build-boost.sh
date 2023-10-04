@@ -2,7 +2,7 @@
 set -ex
 
 BOOST_MAJOR=1
-BOOST_MINOR=76
+BOOST_MINOR=77
 BOOST_PATCH=0
 
 wget --no-check-certificate -O /tmp/boost.tar.gz "https://sourceforge.net/projects/boost/files/boost/${BOOST_MAJOR}.${BOOST_MINOR}.${BOOST_PATCH}/boost_${BOOST_MAJOR}_${BOOST_MINOR}_${BOOST_PATCH}.tar.gz/download"
