@@ -2,7 +2,7 @@
 set -ex
 
 BOOST_MAJOR=1
-BOOST_MINOR=80
+BOOST_MINOR=81
 BOOST_PATCH=0
 
 wget --no-check-certificate -O /tmp/boost.tar.gz "https://sourceforge.net/projects/boost/files/boost/${BOOST_MAJOR}.${BOOST_MINOR}.${BOOST_PATCH}/boost_${BOOST_MAJOR}_${BOOST_MINOR}_${BOOST_PATCH}.tar.gz/download"
@@ -20,7 +20,6 @@ cd $BOOST_ROOT
 ./b2 -j$(nproc) cxxflags="-fPIC" variant=release link=static --with-python --user-config="/python-config.jam" python="3.9" install
 ./b2 -j$(nproc) cxxflags="-fPIC" variant=release link=static --with-python --user-config="/python-config.jam" python="3.10" install
 ./b2 -j$(nproc) cxxflags="-fPIC" variant=release link=static --with-python --user-config="/python-config.jam" python="3.11" install
-./b2 -j$(nproc) cxxflags="-fPIC" variant=release link=static --with-python --user-config="/python-config.jam" python="3.12" install
 
 cd /
 rm -rf /tmp/boost_src/ /tmp/boost.tar.gz
