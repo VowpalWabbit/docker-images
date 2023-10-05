@@ -19,10 +19,6 @@ jobs:
             dockerfile: vowpal_wabbit/centos7_6_1810-build.Dockerfile
             context: ./
             changes_path_filter: vowpal_wabbit/centos7_6_1810-build.Dockerfile
-          - image_name: manylinux2010-build
-            dockerfile: manylinux2010-build.Dockerfile
-            context: ./vowpal_wabbit/manylinux/
-            changes_path_filter: vowpal_wabbit/manylinux/**
           - image_name: manylinux2014_aarch64-build
             dockerfile: manylinux2014_aarch64-build.Dockerfile
             context: ./vowpal_wabbit/manylinux/
@@ -31,10 +27,6 @@ jobs:
             dockerfile: manylinux2014_x86_64-build.Dockerfile
             context: ./vowpal_wabbit/manylinux/
             changes_path_filter: vowpal_wabbit/manylinux/**
-          - image_name: rl-manylinux2010-build
-            dockerfile: rl-manylinux2010-build.Dockerfile
-            context: ./reinforcement_learning/manylinux-2010/
-            changes_path_filter: reinforcement_learning/manylinux-2010/**
           - image_name: rl-ubuntu-1804
             dockerfile: reinforcement_learning/ubuntu1804-build.Dockerfile
             context: ./
