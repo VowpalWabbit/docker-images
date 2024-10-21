@@ -35,6 +35,10 @@ jobs:
             dockerfile: rl-manylinux2010-build.Dockerfile
             context: ./reinforcement_learning/manylinux-2010/
             changes_path_filter: reinforcement_learning/manylinux-2010/**
+          - image_name: rl-manylinux-2_28-build
+            dockerfile: rl-manylinux-2_28-build.Dockerfile
+            context: ./reinforcement_learning/manylinux-2_28/
+            changes_path_filter: reinforcement_learning/manylinux-2_28/**
           - image_name: rl-ubuntu-1804
             dockerfile: reinforcement_learning/ubuntu1804-build.Dockerfile
             context: ./
