@@ -15,7 +15,7 @@ Tags on DockerHub correspond to [tags](https://github.com/VowpalWabbit/docker-im
 | [CentOS 7.6.1810](./vowpal_wabbit/centos7_6_1810-build.Dockerfile) | [vowpalwabbit/centos7_6_1810-build](https://hub.docker.com/r/vowpalwabbit/centos7_6_1810-build)  |  CI |
 | [RL Ubuntu 18.04](./reinforcement_learning/ubuntu1804-build.Dockerfile) | [vowpalwabbit/rl-ubuntu-1804](https://hub.docker.com/r/vowpalwabbit/rl-ubuntu-1804)  |  CI |
 | [RL Python ManyLinux 2010](./reinforcement_learning/manylinux-2010/rlclientlib-manylinux2010-build.Dockerfile) | [vowpalwabbit/rlclientlib-manylinux2010-build](https://hub.docker.com/r/vowpalwabbit/rlclientlib-manylinux2010-build)  |  CI/Python packaging |
-
+| [RL Python ManyLinux 2_28](./reinforcement_learning/manylinux-2_28/rlclientlib-manylinux-2_28-build.Dockerfile) | [vowpalwabbit/rlclientlib-manylinux-2_28-build](https://hub.docker.com/r/vowpalwabbit/rlclientlib-manylinux-2_28-build)  |  CI/Python packaging |
 
 ## Release steps
 
