@@ -1,0 +1,28 @@
+name:  Manual build and deploy to DockerHub
+
+on:
+  workflow_dispatch:
+  
+jobs:
+  build:
+    name: rl-manylinux-2_28-build
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        config:
+        - { image_name: rl-manylinux-2_28-build, dockerfile: rl-manylinux-2_28-build.Dockerfile, context: ./reinforcement_learning/manylinux-2_28/ }
+    steps:
+      - uses: actions/checkout@master
+      - name: Set up QEMU
+        if: ${{ matrix.config.image_name == 'manylinux2014_aarch64-build' }}
+        uses: docker/setup-qemu-action@v1
+      - name: Login, build and push image
+        if: success()
+        uses: whoan/docker-build-with-cache-action@v4
+        with:
+          username: "${{ secrets.DOCKER_USERNAME }}"
+          password: "${{ secrets.DOCKER_PASSWORD }}"
+          image_name: "vowpalwabbit/${{matrix.config.image_name}}"
+          dockerfile: "${{matrix.config.dockerfile}}"
+          context: "${{ matrix.config.context }}"
+          push_image_and_stages: true
